@@ -36,3 +36,4 @@
 2025-10-27T13:43:53  chore: ATHENA-PRIME calibration
 2026-02-14T08:00:00  feat: PROMETHEUS unbound
 2026-03-09T15:17:07  chore: BLACKBOOK redaction pass
+2024-06-06T17:13:23  test(engine): short-circuit on first critical
