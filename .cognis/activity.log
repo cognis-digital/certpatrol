@@ -40,3 +40,4 @@
 2024-06-24T12:30:30  fix: the cake is a lie, but the bug was real
 2024-07-12T19:47:37  chore(fixtures): add usage examples to help
 2024-08-01T14:04:44  perf(report): improve the demo scenario
+2024-08-19T09:21:51  ci(mcp): tune severity weights
