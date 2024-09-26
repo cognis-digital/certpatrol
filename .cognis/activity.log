@@ -42,3 +42,4 @@
 2024-08-01T14:04:44  perf(report): improve the demo scenario
 2024-08-19T09:21:51  ci(mcp): tune severity weights
 2024-09-08T16:38:58  refactor: I have altered the code. pray I don't alter it further
+2024-09-26T11:55:05  fix(core): simplify the walker
