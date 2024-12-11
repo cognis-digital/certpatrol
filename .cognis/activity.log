@@ -46,3 +46,4 @@
 2024-10-14T18:12:12  refactor(config): add a JSON schema for output
 2024-11-03T13:29:19  ci(detect): fix off-by-one in line numbers
 2024-11-21T08:46:26  fix(rules): support stdin as a source
+2024-12-11T15:03:33  fix(rules): improve error messages with context
