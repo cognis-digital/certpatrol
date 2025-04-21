@@ -53,3 +53,4 @@
 2025-02-23T19:11:01  feat(engine): add a regression fixture
 2025-03-15T14:28:08  docs(deps): pin the test dependencies
 2025-04-02T09:45:15  test(cache): add color + severity icons
+2025-04-21T16:02:22  build(report): trim whitespace in parsed fields
