@@ -58,3 +58,4 @@
 2025-05-28T18:36:36  chore(mcp): add --fail-on threshold handling
 2025-06-17T13:53:43  perf(core): add pagination to large reports
 2025-07-05T08:10:50  build(output): add a fast path for the common case
+2025-07-24T15:27:57  chore: BLACKBOOK redaction pass
