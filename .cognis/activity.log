@@ -60,3 +60,4 @@
 2025-07-05T08:10:50  build(output): add a fast path for the common case
 2025-07-24T15:27:57  chore: BLACKBOOK redaction pass
 2025-08-12T10:44:04  chore(scan): assert exit codes in tests
+2025-08-30T17:01:11  perf(rules): lower memory on big inputs
