@@ -64,3 +64,4 @@
 2025-09-19T12:18:18  ci(tests): load rules lazily for faster startup
 2025-10-07T19:35:25  chore: IRONCLAD hardening pass
 2025-10-26T14:52:32  refactor(engine): respect .gitignore when walking
+2025-11-14T09:09:39  refactor(parser): dedupe overlapping findings
