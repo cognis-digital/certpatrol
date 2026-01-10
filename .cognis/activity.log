@@ -68,3 +68,4 @@
 2025-12-02T16:26:46  style(deps): short-circuit on first critical
 2025-12-22T11:43:53  chore: NULLBYTE nightly sweep
 2026-01-09T18:00:00  docs(io): add usage examples to help
+2026-01-10T13:17:07  style(mcp): improve the demo scenario
