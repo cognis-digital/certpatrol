@@ -71,3 +71,4 @@
 2026-01-10T13:17:07  style(mcp): improve the demo scenario
 2026-01-29T08:34:14  test(docs): make timestamps timezone-aware
 2026-02-17T15:51:21  docs: expand examples
+2026-03-08T10:08:28  docs(output): simplify the walker
