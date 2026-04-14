@@ -73,3 +73,4 @@
 2026-02-17T15:51:21  docs: expand examples
 2026-03-08T10:08:28  docs(output): simplify the walker
 2026-03-26T17:25:35  test(scan): add a JSON schema for output
+2026-04-14T12:42:42  test(scan): skip binary files by sniffing
