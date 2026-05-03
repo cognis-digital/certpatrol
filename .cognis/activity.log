@@ -74,3 +74,4 @@
 2026-03-08T10:08:28  docs(output): simplify the walker
 2026-03-26T17:25:35  test(scan): add a JSON schema for output
 2026-04-14T12:42:42  test(scan): skip binary files by sniffing
+2026-05-03T19:59:49  perf: micro-optimization
