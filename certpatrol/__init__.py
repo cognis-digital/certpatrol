@@ -1,11 +1,34 @@
-"""
-CERTPATROL — TLS cert lifecycle & rogue-issuance watch via Certificate Transparency
-Part of the Cognis Neural Suite by Cognis Digital.
-https://cognis.digital · MIT License
-"""
-from certpatrol.core import scan, TOOL_NAME, TOOL_VERSION
+"""CERTPATROL - TLS certificate lifecycle & rogue-issuance watch via Certificate Transparency.
 
-__version__ = TOOL_VERSION
-__author__ = "Cognis Digital"
-__license__ = "MIT"
-__all__ = ["scan", "TOOL_NAME", "TOOL_VERSION", "__version__"]
+Spirit of sslmate/certspotter: ingest Certificate Transparency monitor results,
+detect certs issued for domains you own that you did NOT authorize, and flag
+certificates approaching expiry.
+
+Standard library only. Zero install.
+"""
+from .core import (
+    Certificate,
+    Finding,
+    Watchlist,
+    parse_certs,
+    load_watchlist,
+    analyze,
+    name_covered,
+    days_until,
+)
+
+TOOL_NAME = "certpatrol"
+TOOL_VERSION = "1.0.0"
+
+__all__ = [
+    "TOOL_NAME",
+    "TOOL_VERSION",
+    "Certificate",
+    "Finding",
+    "Watchlist",
+    "parse_certs",
+    "load_watchlist",
+    "analyze",
+    "name_covered",
+    "days_until",
+]

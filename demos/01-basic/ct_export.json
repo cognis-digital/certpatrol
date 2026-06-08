@@ -1,0 +1,37 @@
+[
+  {
+    "dns_names": ["greenwayenergycapital.com", "www.greenwayenergycapital.com"],
+    "issuer": "Let's Encrypt R3",
+    "not_before": "2026-04-10T00:00:00Z",
+    "not_after": "2026-07-09T00:00:00Z",
+    "serial": "03:af:12",
+    "fingerprint_sha256": "a1b2c3d4e5f60718293a4b5c6d7e8f90112233445566778899aabbccddeeff00",
+    "source": "ct/google_argon2026"
+  },
+  {
+    "dns_names": ["mail.greenwayenergycapital.com"],
+    "issuer": "Let's Encrypt R3",
+    "not_before": "2026-03-01T00:00:00Z",
+    "not_after": "2026-06-15T00:00:00Z",
+    "serial": "03:af:55",
+    "fingerprint_sha256": "ffeeddccbbaa00998877665544332211100f1e2d3c4b5a69788776655443322",
+    "source": "ct/cloudflare_nimbus2026"
+  },
+  {
+    "dns_names": ["*.greenwayenergycapital.com"],
+    "issuer": "WoSign CA Free SSL",
+    "not_before": "2026-06-05T00:00:00Z",
+    "not_after": "2027-06-05T00:00:00Z",
+    "serial": "66:13:9e",
+    "fingerprint_sha256": "deadbeefdeadbeefdeadbeefdeadbeefdeadbeefdeadbeefdeadbeefdeadbeef0",
+    "source": "ct/sectigo_sabre2026"
+  },
+  {
+    "dns_names": ["someoneelse.example.org"],
+    "issuer": "DigiCert TLS RSA",
+    "not_before": "2026-01-01T00:00:00Z",
+    "not_after": "2027-01-01T00:00:00Z",
+    "serial": "11:22:33",
+    "source": "ct/google_argon2026"
+  }
+]
