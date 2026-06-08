@@ -1,0 +1,10 @@
+{
+  "name": "@cognis/certpatrol",
+  "version": "0.2.0",
+  "description": "JavaScript port of certpatrol (Cognis Neural Suite)",
+  "bin": {
+    "certpatrol": "index.js"
+  },
+  "license": "LicenseRef-COCL-1.0",
+  "type": "module"
+}
