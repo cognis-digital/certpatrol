@@ -1,34 +1,11 @@
-"""CERTPATROL - TLS certificate lifecycle & rogue-issuance watch via Certificate Transparency.
-
-Spirit of sslmate/certspotter: ingest Certificate Transparency monitor results,
-detect certs issued for domains you own that you did NOT authorize, and flag
-certificates approaching expiry.
-
-Standard library only. Zero install.
-"""
-from .core import (
-    Certificate,
-    Finding,
-    Watchlist,
-    parse_certs,
-    load_watchlist,
-    analyze,
-    name_covered,
-    days_until,
-)
-
-TOOL_NAME = "certpatrol"
-TOOL_VERSION = "1.0.0"
-
-__all__ = [
-    "TOOL_NAME",
-    "TOOL_VERSION",
-    "Certificate",
-    "Finding",
-    "Watchlist",
-    "parse_certs",
-    "load_watchlist",
-    "analyze",
-    "name_covered",
-    "days_until",
-]
+"""certpatrol — part of the Cognis Neural Suite."""
+try:  # re-export the tool's public API + identity from core
+    from certpatrol.core import *  # noqa: F401,F403
+except Exception:  # pragma: no cover
+    pass
+try:
+    from certpatrol.core import TOOL_NAME, TOOL_VERSION
+except Exception:  # pragma: no cover
+    TOOL_NAME = "certpatrol"
+    TOOL_VERSION = "0.1.0"
+__version__ = TOOL_VERSION
