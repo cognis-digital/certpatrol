@@ -36,7 +36,11 @@ TLS cert lifecycle & rogue-issuance watch via Certificate Transparency — witho
 <a name="features"></a>
 ## Features
 
-- ✅ Scan
+- ✅ Days Until
+- ✅ Name Covered
+- ✅ Parse Certs
+- ✅ Load Watchlist
+- ✅ Analyze
 - ✅ Runs on Linux/macOS/Windows · Docker · devcontainer
 - ✅ Ports in Python, JavaScript, Go, and Rust (`ports/`)
 
