@@ -1,0 +1,23 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata: { name: certpatrol, labels: { app: certpatrol } }
+spec:
+  replicas: 1
+  selector: { matchLabels: { app: certpatrol } }
+  template:
+    metadata: { labels: { app: certpatrol } }
+    spec:
+      containers:
+        - name: certpatrol
+          image: ghcr.io/cognis-digital/certpatrol:latest
+          ports: [{ containerPort: 8000 }]
+          resources:
+            requests: { cpu: "50m", memory: "64Mi" }
+            limits: { cpu: "500m", memory: "256Mi" }
+---
+apiVersion: v1
+kind: Service
+metadata: { name: certpatrol }
+spec:
+  selector: { app: certpatrol }
+  ports: [{ port: 80, targetPort: 8000 }]
