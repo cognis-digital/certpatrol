@@ -1,0 +1,15 @@
+[
+  {
+    "domain": "api.cognis.digital",
+    "in_ct_log": true,
+    "in_expected_issuers": false,
+    "issuer": "Sectigo",
+    "ts": "2026-06-08T04:14:00Z"
+  },
+  {
+    "domain": "app.cognis.digital",
+    "in_ct_log": true,
+    "in_expected_issuers": true,
+    "issuer": "Let's Encrypt"
+  }
+]

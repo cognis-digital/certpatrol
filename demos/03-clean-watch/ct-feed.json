@@ -1,0 +1,8 @@
+[
+  {
+    "domain": "web.example.com",
+    "in_ct_log": true,
+    "in_expected_issuers": true,
+    "days_to_expiry": "60"
+  }
+]

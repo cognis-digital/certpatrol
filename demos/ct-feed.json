@@ -1,0 +1,13 @@
+[
+  {
+    "domain": "cognis.digital",
+    "in_ct_log": true,
+    "in_expected_issuers": false,
+    "issuer": "Sectigo"
+  },
+  {
+    "domain": "cognis.digital",
+    "days_to_expiry": "9",
+    "issuer": "Let's Encrypt"
+  }
+]

@@ -1,0 +1,17 @@
+[
+  {
+    "domain": "web.example.com",
+    "days_to_expiry": "3",
+    "issuer": "Let's Encrypt"
+  },
+  {
+    "domain": "api.example.com",
+    "days_to_expiry": "7",
+    "issuer": "Let's Encrypt"
+  },
+  {
+    "domain": "admin.example.com",
+    "days_to_expiry": "10",
+    "issuer": "DigiCert"
+  }
+]
