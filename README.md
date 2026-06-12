@@ -16,7 +16,7 @@
 </div>
 
 ```bash
-pip install cognis-certpatrol
+pip install "git+https://github.com/cognis-digital/certpatrol.git"
 certpatrol scan .            # → prioritized findings in seconds
 ```
 
@@ -50,7 +50,7 @@ TLS cert lifecycle & rogue-issuance watch via Certificate Transparency — witho
 ## Quick start
 
 ```bash
-pip install cognis-certpatrol
+pip install "git+https://github.com/cognis-digital/certpatrol.git"
 certpatrol --version
 certpatrol scan .                       # scan current project
 certpatrol scan . --format json         # machine-readable
