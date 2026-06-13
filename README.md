@@ -20,6 +20,28 @@ pip install cognis-certpatrol
 certpatrol scan .            # → prioritized findings in seconds
 ```
 
+## Usage — step by step
+
+`certpatrol` watches TLS certificate lifecycle and rogue issuance by checking a Certificate-Transparency export against a watchlist.
+
+1. **Install**:
+   ```bash
+   pip install -e .
+   ```
+2. **Run a watch** against a CT export (JSON / NDJSON) and a watchlist file:
+   ```bash
+   certpatrol watch --certs ct-monitor.ndjson --watchlist watchlist.json
+   ```
+3. **Read the output** as JSON for alerting:
+   ```bash
+   certpatrol watch --certs ct-monitor.ndjson --watchlist watchlist.json --format json
+   ```
+4. **Use the exit code** — the command returns non-zero when watchlist violations (e.g. rogue issuance) are found.
+5. **Automate in cron/CI**:
+   ```bash
+   certpatrol watch --certs ct-monitor.ndjson --watchlist watchlist.json --format json > findings.json
+   ```
+
 ## Contents
 
 - [Why certpatrol?](#why) · [Features](#features) · [Quick start](#quick-start) · [Example](#example) · [Architecture](#architecture) · [AI stack](#ai-stack) · [How it compares](#how-it-compares) · [Integrations](#integrations) · [Install anywhere](#install-anywhere) · [Related](#related) · [Contributing](#contributing)
