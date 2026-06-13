@@ -20,6 +20,12 @@ pip install "git+https://github.com/cognis-digital/certpatrol.git"
 certpatrol scan .            # → prioritized findings in seconds
 ```
 
+<!-- cognis:layman:start -->
+## What is this?
+
+certpatrol watches your website's security certificates so you never get caught off guard by an expiring cert or a fraudulent one issued by someone else. You point it at a list of your domains, feed it a Certificate Transparency log export, and it tells you which certificates are expiring soon, which have already expired, and which were issued by an authority you never approved. It is designed for developers, security teams, and site owners who want a simple command-line check they can run in automated pipelines without setting up heavyweight monitoring infrastructure.
+<!-- cognis:layman:end -->
+
 ## Contents
 
 - [Why certpatrol?](#why) · [Features](#features) · [Quick start](#quick-start) · [Example](#example) · [Architecture](#architecture) · [AI stack](#ai-stack) · [How it compares](#how-it-compares) · [Integrations](#integrations) · [Install anywhere](#install-anywhere) · [Related](#related) · [Contributing](#contributing)
@@ -47,6 +53,42 @@ TLS cert lifecycle & rogue-issuance watch via Certificate Transparency — witho
 <div align="right"><a href="#top">↑ back to top</a></div>
 
 <a name="quick-start"></a>
+<!-- cognis:install:start -->
+## Install
+
+`certpatrol` is source-available (not published to PyPI) — every method below installs
+straight from GitHub. Pick whichever you prefer; the one-line scripts auto-detect
+the best tool available on your machine.
+
+**One-liner (Linux / macOS):**
+```sh
+curl -fsSL https://raw.githubusercontent.com/cognis-digital/certpatrol/HEAD/install.sh | sh
+```
+
+**One-liner (Windows PowerShell):**
+```powershell
+irm https://raw.githubusercontent.com/cognis-digital/certpatrol/HEAD/install.ps1 | iex
+```
+
+**Or install manually — any one of:**
+```sh
+pipx install "git+https://github.com/cognis-digital/certpatrol.git"     # isolated (recommended)
+uv tool install "git+https://github.com/cognis-digital/certpatrol.git"  # uv
+pip install "git+https://github.com/cognis-digital/certpatrol.git"      # pip
+```
+
+**From source:**
+```sh
+git clone https://github.com/cognis-digital/certpatrol.git
+cd certpatrol && pip install .
+```
+
+Then run:
+```sh
+certpatrol --help
+```
+<!-- cognis:install:end -->
+
 ## Quick start
 
 ```bash
