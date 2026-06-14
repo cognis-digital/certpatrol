@@ -36,3 +36,6 @@ certpatrol = "certpatrol.cli:main"
 
 [tool.hatch.build.targets.wheel]
 packages = ["certpatrol"]
+
+[tool.hatch.metadata]
+allow-direct-references = true
