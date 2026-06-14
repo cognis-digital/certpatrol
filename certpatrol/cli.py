@@ -20,6 +20,7 @@ from .core import analyze, load_watchlist, parse_certs
 
 
 def _read(path: str) -> str:
+    """Read a file, raising OSError (which includes FileNotFoundError/PermissionError)."""
     return Path(path).read_text(encoding="utf-8")
 
 
@@ -69,6 +70,12 @@ def main(argv=None) -> int:
             watch = load_watchlist(_read(args.watchlist))
         except FileNotFoundError as e:
             print(f"error: file not found: {e.filename}", file=sys.stderr)
+            return 1
+        except PermissionError as e:
+            print(f"error: permission denied reading file: {e.filename}", file=sys.stderr)
+            return 1
+        except OSError as e:
+            print(f"error: could not read file: {e}", file=sys.stderr)
             return 1
         except (json.JSONDecodeError, ValueError) as e:
             print(f"error: could not parse input: {e}", file=sys.stderr)

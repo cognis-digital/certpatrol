@@ -34,14 +34,22 @@ def _now() -> datetime:
 
 
 def _parse_dt(value: str) -> datetime:
-    """Accept ISO-8601 with 'Z' or offset, or a bare date."""
+    """Accept ISO-8601 with 'Z' or offset, or a bare date.
+
+    Raises ValueError with a descriptive message on unparseable input.
+    """
+    if not value or not value.strip():
+        raise ValueError("date string is empty")
     s = value.strip()
     if s.endswith("Z"):
         s = s[:-1] + "+00:00"
     try:
         dt = datetime.fromisoformat(s)
     except ValueError:
-        dt = datetime.strptime(s, "%Y-%m-%d")
+        try:
+            dt = datetime.strptime(s, "%Y-%m-%d")
+        except ValueError:
+            raise ValueError(f"unrecognised date format: {value!r}") from None
     if dt.tzinfo is None:
         dt = dt.replace(tzinfo=timezone.utc)
     return dt.astimezone(timezone.utc)
@@ -109,12 +117,41 @@ class Watchlist:
 
     @classmethod
     def from_obj(cls, obj: dict[str, Any]) -> "Watchlist":
+        def _as_list(val: Any) -> list:
+            if val is None:
+                return []
+            if isinstance(val, list):
+                return val
+            raise ValueError(f"expected a list, got {type(val).__name__}: {val!r}")
+
+        raw_warn = obj.get("expiry_warn_days", 21)
+        try:
+            warn_days = int(raw_warn)
+        except (TypeError, ValueError):
+            raise ValueError(
+                f"expiry_warn_days must be an integer, got {raw_warn!r}"
+            ) from None
+        if warn_days < 0:
+            raise ValueError(
+                f"expiry_warn_days must be >= 0, got {warn_days}"
+            )
+
         return cls(
-            domains=[d.strip().lower().rstrip(".") for d in obj.get("domains", [])],
-            allowed_issuers=[s.lower() for s in obj.get("allowed_issuers", [])],
-            allowed_fingerprints=[s.lower() for s in obj.get("allowed_fingerprints", [])],
-            allowed_pubkeys=[s.lower() for s in obj.get("allowed_pubkeys", [])],
-            expiry_warn_days=int(obj.get("expiry_warn_days", 21)),
+            domains=[
+                d.strip().lower().rstrip(".")
+                for d in _as_list(obj.get("domains", []))
+                if str(d).strip()
+            ],
+            allowed_issuers=[
+                s.lower() for s in _as_list(obj.get("allowed_issuers", []))
+            ],
+            allowed_fingerprints=[
+                s.lower() for s in _as_list(obj.get("allowed_fingerprints", []))
+            ],
+            allowed_pubkeys=[
+                s.lower() for s in _as_list(obj.get("allowed_pubkeys", []))
+            ],
+            expiry_warn_days=warn_days,
         )
 
 
@@ -204,10 +241,16 @@ def parse_certs(data: str | bytes | Iterable[dict]) -> list[Certificate]:
             parsed = parsed.get("certificates") or parsed.get("certs") or [parsed]
         objs = list(parsed)
     except json.JSONDecodeError:
-        for line in text.splitlines():
+        for lineno, line in enumerate(text.splitlines(), 1):
             line = line.strip()
-            if line:
+            if not line:
+                continue
+            try:
                 objs.append(json.loads(line))
+            except json.JSONDecodeError as exc:
+                raise ValueError(
+                    f"NDJSON parse error on line {lineno}: {exc}"
+                ) from exc
     return [Certificate.from_obj(o) for o in objs]
 
 
@@ -255,25 +298,38 @@ def analyze(certs: list[Certificate], watch: Watchlist) -> list[Finding]:
 
         # lifecycle checks
         if cert.not_after:
-            left = days_until(cert.not_after)
-            if left < 0:
-                findings.append(Finding(
-                    kind="expired",
-                    severity="high",
-                    domain=primary,
-                    message=f"Certificate for {primary} EXPIRED {abs(left)}d ago "
-                            f"({cert.not_after}).",
-                    certificate=cert_d,
-                ))
-            elif left <= watch.expiry_warn_days and (explicit_ok or issuer_ok):
+            try:
+                left = days_until(cert.not_after)
+            except ValueError:
                 findings.append(Finding(
                     kind="expiring",
-                    severity="medium" if left > 7 else "high",
+                    severity="medium",
                     domain=primary,
-                    message=f"Certificate for {primary} expires in {left}d "
-                            f"({cert.not_after}) — renew soon.",
+                    message=(
+                        f"Certificate for {primary} has an unreadable expiry date "
+                        f"({cert.not_after!r}) — manual review required."
+                    ),
                     certificate=cert_d,
                 ))
+            else:
+                if left < 0:
+                    findings.append(Finding(
+                        kind="expired",
+                        severity="high",
+                        domain=primary,
+                        message=f"Certificate for {primary} EXPIRED {abs(left)}d ago "
+                                f"({cert.not_after}).",
+                        certificate=cert_d,
+                    ))
+                elif left <= watch.expiry_warn_days and (explicit_ok or issuer_ok):
+                    findings.append(Finding(
+                        kind="expiring",
+                        severity="medium" if left > 7 else "high",
+                        domain=primary,
+                        message=f"Certificate for {primary} expires in {left}d "
+                                f"({cert.not_after}) — renew soon.",
+                        certificate=cert_d,
+                    ))
 
     findings.sort(key=lambda f: (SEV_ORDER.get(f.severity, 9), f.kind, f.domain))
     return findings
