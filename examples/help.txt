@@ -1,0 +1,13 @@
+$ certpatrol-emit --help
+
+usage: certpatrol [-h] [--version] {watch} ...
+
+TLS cert lifecycle & rogue-issuance watch via Certificate Transparency.
+
+positional arguments:
+  {watch}
+    watch     Analyze a CT export against a watchlist.
+
+options:
+  -h, --help  show this help message and exit
+  --version   show program's version number and exit

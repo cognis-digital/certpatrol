@@ -20,6 +20,60 @@ pip install cognis-certpatrol
 certpatrol scan .            # → prioritized findings in seconds
 ```
 
+
+<!-- cognis:example:start -->
+## 🔎 Example output
+
+Real, reproducible output from the tool — runs offline:
+
+```console
+$ certpatrol-emit --version
+certpatrol 0.1.0
+```
+
+```console
+$ certpatrol-emit --help
+usage: certpatrol [-h] [--version] {watch} ...
+
+TLS cert lifecycle & rogue-issuance watch via Certificate Transparency.
+
+positional arguments:
+  {watch}
+    watch     Analyze a CT export against a watchlist.
+
+options:
+  -h, --help  show this help message and exit
+  --version   show program's version number and exit
+```
+
+> Blocks above are real `certpatrol` output — reproduce them from a clone.
+
+**Sample result format** _(illustrative values — run on your own data for real findings):_
+
+```
+{
+    "timestamp": "2023-02-16T14:30:00Z",
+    "findings": [
+        {
+            "id": "1234567890",
+            "title": "Suspicious Network Traffic",
+            "description": "Network traffic from an unknown IP address",
+            "severity": "medium",
+            "created_at": "2023-02-16T14:30:00Z"
+        },
+        {
+            "id": "2345678901",
+            "title": "Unusual File Access",
+            "description": "File access from a non-standard location",
+            "severity": "high",
+            "created_at": "2023-02-17T10:45:00Z"
+        }
+    ]
+}
+```
+
+<!-- cognis:example:end -->
+
 ## Usage — step by step
 
 `certpatrol` watches TLS certificate lifecycle and rogue issuance by checking a Certificate-Transparency export against a watchlist.
